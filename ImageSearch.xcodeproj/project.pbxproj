@@ -16,6 +16,9 @@
 		D40686982A124B7F00DFE534 /* ImageSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40686972A124B7F00DFE534 /* ImageSearchTests.swift */; };
 		D40686A22A124B7F00DFE534 /* ImageSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40686A12A124B7F00DFE534 /* ImageSearchUITests.swift */; };
 		D40686A42A124B7F00DFE534 /* ImageSearchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40686A32A124B7F00DFE534 /* ImageSearchUITestsLaunchTests.swift */; };
+		D40686B32A13ABD100DFE534 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40686B22A13ABD100DFE534 /* SearchViewModel.swift */; };
+		D40686B52A13AD9600DFE534 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40686B42A13AD9600DFE534 /* ImageCell.swift */; };
+		D40686B72A13ADD000DFE534 /* ImageGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40686B62A13ADD000DFE534 /* ImageGalleryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		D406869D2A124B7F00DFE534 /* ImageSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40686A12A124B7F00DFE534 /* ImageSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchUITests.swift; sourceTree = "<group>"; };
 		D40686A32A124B7F00DFE534 /* ImageSearchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D40686B22A13ABD100DFE534 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		D40686B42A13AD9600DFE534 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		D40686B62A13ADD000DFE534 /* ImageGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageGalleryViewController.swift; path = ../ImageGalleryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +105,12 @@
 		D406867F2A124B7E00DFE534 /* ImageSearch */ = {
 			isa = PBXGroup;
 			children = (
+				D40686B62A13ADD000DFE534 /* ImageGalleryViewController.swift */,
 				D40686802A124B7E00DFE534 /* AppDelegate.swift */,
 				D40686822A124B7E00DFE534 /* SceneDelegate.swift */,
 				D40686842A124B7E00DFE534 /* ViewController.swift */,
+				D40686B22A13ABD100DFE534 /* SearchViewModel.swift */,
+				D40686B42A13AD9600DFE534 /* ImageCell.swift */,
 				D40686862A124B7E00DFE534 /* Main.storyboard */,
 				D40686892A124B7F00DFE534 /* Assets.xcassets */,
 				D406868B2A124B7F00DFE534 /* LaunchScreen.storyboard */,
@@ -258,9 +267,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40686B72A13ADD000DFE534 /* ImageGalleryViewController.swift in Sources */,
 				D40686852A124B7E00DFE534 /* ViewController.swift in Sources */,
+				D40686B32A13ABD100DFE534 /* SearchViewModel.swift in Sources */,
 				D40686812A124B7E00DFE534 /* AppDelegate.swift in Sources */,
 				D40686832A124B7E00DFE534 /* SceneDelegate.swift in Sources */,
+				D40686B52A13AD9600DFE534 /* ImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,7 +449,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L9R4X7M7TH;
+				DEVELOPMENT_TEAM = SUW3627593;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImageSearch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -450,7 +462,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cherryImaging.ImageSearch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ofrishadmi.ImageSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -465,7 +477,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L9R4X7M7TH;
+				DEVELOPMENT_TEAM = SUW3627593;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImageSearch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -478,7 +490,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cherryImaging.ImageSearch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ofrishadmi.ImageSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
