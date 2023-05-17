@@ -30,7 +30,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         searchBar.delegate = self
 
         searchBar.frame = CGRect(x: self.view.frame.minX + 20, y: self.view.frame.minY + 120, width: self.view.bounds.width - 33, height: 50)
-        searchBar.backgroundColor = .white
+        searchBar.searchTextField.textColor = .black.withAlphaComponent(0.7)
         
         if(searchBar.text != ""){
             searchImages()

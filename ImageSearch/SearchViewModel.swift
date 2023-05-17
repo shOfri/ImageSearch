@@ -36,7 +36,6 @@ class SearchViewModel {
                 do {
                     let decoder = JSONDecoder()
                     let result = try decoder.decode(SearchResult.self, from: data)
-                    //self.images = result.hits
                     
                     for image in result.hits{
                         self.images.append(image)
