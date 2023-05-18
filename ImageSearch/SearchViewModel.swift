@@ -2,7 +2,7 @@
 //  SearchViewModel.swift
 //  ImageSearch
 //
-//  Created by Ofri Shadmi on 16/05/2023.
+//  Created by Ofri Shadmi on 17/05/2023.
 //
 
 import Foundation
@@ -14,7 +14,6 @@ class SearchViewModel {
     var searchText: String = ""
     var currentPage: Int = 1
     var images: [Image] = []
-    var savedImages: [Image] = []
     
     func performSearch(completion: @escaping (Result<Void, Error>) -> Void) {
         let urlString = "https://pixabay.com/api/?q=\(searchText)&key=\(apiKey)&page=\(currentPage)&per_page=\(pageSize)"

@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  ImageSearch
 //
-//  Created by Ofri Shadmi on 15/05/2023.
+//  Created by Ofri Shadmi on 16/05/2023.
 //
 
 import UIKit

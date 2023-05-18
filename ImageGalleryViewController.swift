@@ -1,8 +1,8 @@
-//
+
 //  ImageGalleryViewController.swift
 //  ImageSearch
 //
-//  Created by Ofri Shadmi on 16/05/2023.
+//  Created by Ofri Shadmi on 17/05/2023.
 //
 
 import Foundation
@@ -17,18 +17,16 @@ class ImageGalleryViewController: UIViewController {
         
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
         return imageView
     }()
     
     private let shareButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-        
+        button.setTitle("Share Image", for: .normal)
+        button.backgroundColor = .black.withAlphaComponent(0.8)
+        button.layer.cornerRadius = 13
         return button
     }()
-        
         
     init(images: [Image], selectedIndex: Int) {
         self.images = images
@@ -46,17 +44,8 @@ class ImageGalleryViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .black
-        view.addSubview(imageView)
-        imageView.frame = view.bounds
-        imageView.isUserInteractionEnabled = true
         
-        view.addSubview(shareButton)
-        shareButton.translatesAutoresizingMaskIntoConstraints = false
-        shareButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
-        shareButton.tintColor = .white
-        shareButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        shareButton.addTarget( self, action: #selector(shareButtonTapped), for: .touchUpInside)
-
+        setupView()
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
         swipeRight.direction = .right
@@ -66,8 +55,22 @@ class ImageGalleryViewController: UIViewController {
         swipeLeft.direction = .left
         imageView.addGestureRecognizer(swipeLeft)
 
-            
         displayImage(at: selectedIndex)
+    }
+    
+    func setupView(){
+        
+        view.addSubview(imageView)
+        imageView.frame = view.bounds
+        imageView.isUserInteractionEnabled = true
+        setImageOnFullScreen(imageView: imageView)
+        
+        view.addSubview(shareButton)
+        shareButton.translatesAutoresizingMaskIntoConstraints = false
+        shareButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
+        shareButton.tintColor = .white
+        shareButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        shareButton.addTarget( self, action: #selector(shareButtonTapped), for: .touchUpInside)
     }
         
     @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
@@ -122,6 +125,19 @@ class ImageGalleryViewController: UIViewController {
              
         let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func setImageOnFullScreen(imageView: UIImageView) {
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+
+        let imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        imageViewBackground.image = imageView.image
+
+        imageViewBackground.contentMode = .scaleAspectFill
+
+        view.addSubview(imageViewBackground)
+        view.sendSubviewToBack(imageViewBackground)
     }
 }
 

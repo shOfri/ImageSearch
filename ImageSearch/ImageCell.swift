@@ -1,4 +1,9 @@
-// ImageCell.swift
+//
+//  ImageCell.swift
+//  ImageSearch
+//
+//  Created by Ofri Shadmi on 17/05/2023.
+//
 
 import UIKit
 

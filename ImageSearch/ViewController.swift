@@ -1,3 +1,9 @@
+//
+//  ViewController.swift
+//  ImageSearch
+//
+//  Created by Ofri Shadmi on 17/05/2023.
+//
 
 import UIKit
 
@@ -6,22 +12,31 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var GoBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var errorMessage: UILabel!
     
     let viewModel = SearchViewModel()
             
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        setupCollectionView()
         
+        modalPresentationStyle = .fullScreen
+        view.backgroundColor = .white
+        
+        setupCollectionView()
+        changePlacehoderColor()
         setupView()
         
-        NotificationCenter.default.addObserver(
-                self,
-                selector: #selector(keyboardWillShow),
-                name: UIResponder.keyboardWillShowNotification,
-                object: nil
-        )
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                 flowLayout.itemSize = CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+                 flowLayout.minimumLineSpacing = 10
+                 flowLayout.minimumInteritemSpacing = 10
+                 flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        }
+    }
+    
+    override func viewWillAppear(_ animated : Bool){
+        super.viewWillAppear(animated)
+        (UIApplication.shared.delegate as! AppDelegate).restrictRotation = .portrait
     }
 
     func setupView(){
@@ -41,6 +56,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         searchBar.center.x = view.frame.midX
         searchBar.center.y = view.frame.minY + 100
+        
+        errorMessage.center.x = view.frame.midX
+        errorMessage.center.y = view.frame.midY
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -62,6 +80,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     @IBAction func goButtonTapped(_ sender: UIButton) {
+        
+        dismissKeyboard()
         searchImages()
     }
     
@@ -77,11 +97,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         viewModel.performSearch { [weak self] result in
             switch result {
             case .success:
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [self] in
+                    
+                    if(self?.viewModel.images.count == 0){
+                        self?.errorMessage.text = "Could not find images according this search"
+                    }
                     self?.collectionView.reloadData()
                     UserDefaults.standard.set(searchText, forKey: "LastSearch")
                 }
             case .failure(let error):
+                self?.errorMessage.text = "Could not load images"
+                self?.collectionView.reloadData()
                 print("Search error: \(error)")
             }
         }
@@ -107,9 +133,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
         let screenHeight = UIScreen.main.bounds.height
-        let cellHeight = screenHeight * 0.2
+        let cellHeight = screenHeight * 0.15
         let imageResult = viewModel.images[indexPath.item]
-        let width = calculateProportionalWidth(imageResult.webformatWidth, imageResult.webformatHeight)
+        let width = calculateProportionalWidth(width: imageResult.webformatWidth, height: imageResult.webformatHeight)
         return CGSize(width: width, height: cellHeight)
     
     }
@@ -120,9 +146,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         present(galleryViewController, animated: true, completion: nil)
     }
     
-    private func calculateProportionalWidth(_ width: Int, _ height: Int) -> CGFloat {
+    private func calculateProportionalWidth(width: Int, height: Int) -> CGFloat {
         let collectionViewWidth = collectionView.frame.width
-        let cellWidth = (collectionViewWidth - 50) / 2
+        let cellWidth = (collectionViewWidth - 30) / 3
         let aspectRatio = CGFloat(width) / CGFloat(height)
         return cellWidth / aspectRatio
     }
@@ -146,8 +172,24 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
              return
          }
      }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        errorMessage.text = ""
+    }
+    
+    func changePlacehoderColor(){
+        
+        let placeholderAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.7)]
+        let attributedPlaceholder = NSAttributedString(string: "Search images...", attributes: placeholderAttributes)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.7)]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).attributedPlaceholder = attributedPlaceholder
+    }
 }
 
 
+extension UIViewController {
 
-
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
