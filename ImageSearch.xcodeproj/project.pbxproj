@@ -18,7 +18,7 @@
 		D40686A42A124B7F00DFE534 /* ImageSearchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40686A32A124B7F00DFE534 /* ImageSearchUITestsLaunchTests.swift */; };
 		D40686B32A13ABD100DFE534 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40686B22A13ABD100DFE534 /* SearchViewModel.swift */; };
 		D40686B52A13AD9600DFE534 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40686B42A13AD9600DFE534 /* ImageCell.swift */; };
-		D40686B72A13ADD000DFE534 /* ImageGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40686B62A13ADD000DFE534 /* ImageGalleryViewController.swift */; };
+		D40686B92A1609B200DFE534 /* ImageGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40686B82A1609B200DFE534 /* ImageGalleryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,7 @@
 		D40686A32A124B7F00DFE534 /* ImageSearchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D40686B22A13ABD100DFE534 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		D40686B42A13AD9600DFE534 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
-		D40686B62A13ADD000DFE534 /* ImageGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageGalleryViewController.swift; path = ../ImageGalleryViewController.swift; sourceTree = "<group>"; };
+		D40686B82A1609B200DFE534 /* ImageGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +105,7 @@
 		D406867F2A124B7E00DFE534 /* ImageSearch */ = {
 			isa = PBXGroup;
 			children = (
-				D40686B62A13ADD000DFE534 /* ImageGalleryViewController.swift */,
-				D40686842A124B7E00DFE534 /* ViewController.swift */,
+				D40686BA2A160A2700DFE534 /* ViewControllers */,
 				D40686B22A13ABD100DFE534 /* SearchViewModel.swift */,
 				D40686B42A13AD9600DFE534 /* ImageCell.swift */,
 				D40686802A124B7E00DFE534 /* AppDelegate.swift */,
@@ -134,6 +133,15 @@
 				D40686A32A124B7F00DFE534 /* ImageSearchUITestsLaunchTests.swift */,
 			);
 			path = ImageSearchUITests;
+			sourceTree = "<group>";
+		};
+		D40686BA2A160A2700DFE534 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D40686842A124B7E00DFE534 /* ViewController.swift */,
+				D40686B82A1609B200DFE534 /* ImageGalleryViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,10 +275,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D40686B72A13ADD000DFE534 /* ImageGalleryViewController.swift in Sources */,
 				D40686852A124B7E00DFE534 /* ViewController.swift in Sources */,
 				D40686B32A13ABD100DFE534 /* SearchViewModel.swift in Sources */,
 				D40686812A124B7E00DFE534 /* AppDelegate.swift in Sources */,
+				D40686B92A1609B200DFE534 /* ImageGalleryViewController.swift in Sources */,
 				D40686832A124B7E00DFE534 /* SceneDelegate.swift in Sources */,
 				D40686B52A13AD9600DFE534 /* ImageCell.swift in Sources */,
 			);
