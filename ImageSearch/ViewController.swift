@@ -15,7 +15,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var errorMessage: UILabel!
     
     let viewModel = SearchViewModel()
-            
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,13 +25,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         setupCollectionView()
         changePlacehoderColor()
         setupView()
-        
-        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-                 flowLayout.itemSize = CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
-                 flowLayout.minimumLineSpacing = 10
-                 flowLayout.minimumInteritemSpacing = 10
-                 flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        }
     }
     
     override func viewWillAppear(_ animated : Bool){
@@ -136,6 +129,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let cellHeight = screenHeight * 0.15
         let imageResult = viewModel.images[indexPath.item]
         let width = calculateProportionalWidth(width: imageResult.webformatWidth, height: imageResult.webformatHeight)
+        
         return CGSize(width: width, height: cellHeight)
     
     }
@@ -148,7 +142,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     private func calculateProportionalWidth(width: Int, height: Int) -> CGFloat {
         let collectionViewWidth = collectionView.frame.width
-        let cellWidth = (collectionViewWidth - 30) / 3
+        let cellWidth = (collectionViewWidth) / 3
         let aspectRatio = CGFloat(width) / CGFloat(height)
         return cellWidth / aspectRatio
     }
@@ -184,8 +178,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.7)]
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).attributedPlaceholder = attributedPlaceholder
     }
-}
 
+}
 
 extension UIViewController {
 

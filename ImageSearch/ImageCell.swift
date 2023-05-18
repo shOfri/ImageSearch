@@ -8,7 +8,7 @@
 import UIKit
 
 class ImageCell: UICollectionViewCell {
-    private let imageView: UIImageView = {
+    private var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -18,8 +18,11 @@ class ImageCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        imageView = UIImageView(frame: contentView.bounds)
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+                
         contentView.addSubview(imageView)
-        imageView.frame = contentView.bounds
     }
     
     required init?(coder: NSCoder) {
@@ -29,6 +32,12 @@ class ImageCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+           
+        imageView.frame = contentView.bounds
     }
     
     func configure(with image: Image) {
